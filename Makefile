@@ -5,14 +5,6 @@ SOURCES = main.cpp include/*.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 OUT = out
 
-recomp main.cpp:
+main main.cpp:
 	$(C) $(CF) $(SOURCES) $(DEPS) -o $(OUT)
-
-all: $(SOURCES) $(EXECUTABLE)
-
-$(EXECUTABLE): $(OBJECTS)
-	$(C) $(CF) $(OBJECTS) -o $@
-
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
 	

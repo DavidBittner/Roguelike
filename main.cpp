@@ -1,6 +1,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+#include "include/class_player.h"
+
 void Reshape( GLFWwindow *wind, int width, int height )
 {
 
@@ -34,12 +36,16 @@ int main()
     Reshape( wind, WINDOW_WIDTH, WINDOW_HEIGHT );
     glfwSetWindowSizeCallback( wind, Reshape );
 
+    Player test;
+
     while( !glfwWindowShouldClose( wind ) )
     {
 
         glClear( GL_COLOR_BUFFER_BIT );
         glLoadIdentity();
         glTranslatef( 0.0f, 0.0f, -1.0f );
+
+        test.Move();
 
         glfwPollEvents();
         glfwSwapBuffers( wind );
