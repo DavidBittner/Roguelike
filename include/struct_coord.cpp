@@ -1,18 +1,17 @@
-#ifndef STRUCT_COORD
-#define STRUCT_COORD
+#include "struct_coord.h"
 
-struct Coord
-{
+Coord::Coord( float x, float y )
+{   
 
-    template <class typ1, class typ2>
-    Coord( typ1 x, typ2 y )
-    {   this->x = x; this->y = y;}
+    this->x = x; 
+    this->y = y;
+    
+}
 
-    Coord()
-    {   this->x = 0; this->y = 0;}
+Coord::Coord()
+{   
+    
+    this->x = 0; 
+    this->y = 0;
 
-    float x, y;
-
-};
-
-#endif
+}

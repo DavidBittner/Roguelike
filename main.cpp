@@ -2,6 +2,9 @@
 #include <iostream>
 
 #include "include/class_player.h"
+#include "include/class_controller.h"
+
+#include "include/struct_config.h"
 
 void Reshape( GLFWwindow *wind, int width, int height )
 {
@@ -15,6 +18,13 @@ void Reshape( GLFWwindow *wind, int width, int height )
     glOrtho( -width/2.0f, width/2.0f, -height/2.0f, height/2.0f, 1.0f, 2.0f );
 
     glMatrixMode( GL_MODELVIEW );
+
+}
+
+void GAME_CONFIG()
+{
+
+    std::cout << GET_CONFIG().TILE_SIZE << std::endl;
 
 }
 
@@ -36,7 +46,9 @@ int main()
     Reshape( wind, WINDOW_WIDTH, WINDOW_HEIGHT );
     glfwSetWindowSizeCallback( wind, Reshape );
 
-    Player test;
+    Controller *player = new Player();
+
+    GAME_CONFIG();
 
     while( !glfwWindowShouldClose( wind ) )
     {
@@ -45,7 +57,8 @@ int main()
         glLoadIdentity();
         glTranslatef( 0.0f, 0.0f, -1.0f );
 
-        test.Move();
+        player->Move();
+        player->Draw();
 
         glfwPollEvents();
         glfwSwapBuffers( wind );

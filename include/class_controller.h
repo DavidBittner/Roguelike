@@ -1,6 +1,6 @@
 #pragma once
 
-#include "struct_rect.cpp"
+#include "struct_rect.h"
 
 #include <vector>
 
