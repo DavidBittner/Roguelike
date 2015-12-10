@@ -21,13 +21,6 @@ void Reshape( GLFWwindow *wind, int width, int height )
 
 }
 
-void GAME_CONFIG()
-{
-
-    std::cout << GET_CONFIG().TILE_SIZE << std::endl;
-
-}
-
 int main()
 {
 
@@ -47,8 +40,6 @@ int main()
     glfwSetWindowSizeCallback( wind, Reshape );
 
     Controller *player = new Player();
-
-    GAME_CONFIG();
 
     while( !glfwWindowShouldClose( wind ) )
     {
