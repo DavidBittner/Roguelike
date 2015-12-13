@@ -10,8 +10,11 @@ Player::Player()
     HitBox.bounds.x = GET_CONFIG().TILE_SIZE;
     HitBox.bounds.y = GET_CONFIG().TILE_SIZE;
 
-    HitBox.pos.x = 100;
-    HitBox.pos.y = 100;
+    HitBox.pos.x = 0;
+    HitBox.pos.y = 0;
+
+    tarPos.x = 0;
+    tarPos.y = 0;
 
 }
 
@@ -31,12 +34,23 @@ void Player::KeyOps()
 {
 
     bool *keys = ENGINE_GET().GetKeyStates();
+    int tileSize = GET_CONFIG().TILE_SIZE;
 
-    if( keys[GLFW_KEY_A] )
+    if( (tarPos.x == HitBox.pos.x/tileSize) && (tarPos.y == HitBox.pos.y/tileSize) )
     {
 
-        tarPos.x+=1;
-        std::printf( "here %d\n", (int)tarPos.x );
+        if( keys[GLFW_KEY_D] )
+        {
+
+            tarPos.x++;
+            std::printf( "Here\n" );
+
+        }else if( keys[GLFW_KEY_A] )
+        {
+
+            tarPos.y--;
+
+        }
 
     }
 

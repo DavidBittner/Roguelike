@@ -1,6 +1,9 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 
+#include <chrono>
+#include <thread>
+
 #include "class_engine.h"
 #include "class_player.h"
 
@@ -58,12 +61,17 @@ void ENGINE::Init( int WIND_WID, int WIND_HEI )
     Ply = new Player();
     keyStates = new bool[256];
 
+    etime = 0.0f;
+    stime = 0.0f;
+
     Poll();
 
 }
 
 void ENGINE::Poll()
 {
+
+    stime = glfwGetTime();
 
     bool canceled = false;
 
@@ -106,6 +114,12 @@ void ENGINE::Render()
     Ply->Draw();
 
     glfwSwapBuffers( wind );
+
+    etime = glfwGetTime();
+
+    int delayTime = (1000/FRAMES_PER_SECOND)-(etime-stime);
+
+    std::this_thread::sleep_for( std::chrono::milliseconds( delayTime ) );
 
     Poll();
 

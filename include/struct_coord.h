@@ -3,11 +3,11 @@
 struct Coord
 {
         
-    Coord( float x, float y );
+    Coord( double x, double y );
 
     Coord();
 
-    float x, y;
+    double x, y;
 
 };
 

@@ -26,6 +26,9 @@ class ENGINE
         bool *GetKeyStates();
 
     private:
+        const float FRAMES_PER_SECOND = 60.0f;
+        float etime, stime;
+
         GLFWwindow *wind;
 
         int WIND_WID, WIND_HEI;

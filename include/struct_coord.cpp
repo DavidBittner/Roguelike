@@ -1,6 +1,6 @@
 #include "struct_coord.h"
 
-Coord::Coord( float x, float y )
+Coord::Coord( double x, double y )
 {   
 
     this->x = x; 
