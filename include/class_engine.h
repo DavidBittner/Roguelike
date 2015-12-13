@@ -1,5 +1,8 @@
 #include "class_player.h"
 #include "class_controller.h"
+#include "struct_coord.h"
+
+#include <GLFW/glfw3.h>
 
 class ENGINE
 {
@@ -16,8 +19,12 @@ class ENGINE
         void Stop();
 
         void Reshape( GLFWwindow *wind, int width, int height );
-        void KeyFunc();
+        void KeyFunc( GLFWwindow *wind, int key, int scancode, int action, int mods );
         
+        void SetCamera( Coord *camera );
+
+        bool *GetKeyStates();
+
     private:
         GLFWwindow *wind;
 
@@ -25,8 +32,11 @@ class ENGINE
 
         Controller *Ply;
 
+        Coord camera;
+        bool *keyStates;
+
 };
 
 ENGINE &ENGINE_GET();
 void glfwReshape( GLFWwindow *wind, int width, int height );
-void KeyFunc();
+void glfwKeyFunc();

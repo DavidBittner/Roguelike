@@ -7,7 +7,7 @@
 ENGINE &ENGINE_GET()
 {
 
-    ENGINE *eng = new ENGINE();
+    static ENGINE *eng = new ENGINE();
     return *eng;
 
 }
@@ -16,6 +16,13 @@ void glfwReshape( GLFWwindow *wind, int width, int height )
 {
 
     ENGINE_GET().Reshape( wind, width, height );
+
+}
+
+void glfwKeyFunc( GLFWwindow *wind, int key, int scancode, int action, int mods )
+{
+
+    ENGINE_GET().KeyFunc( wind, key, scancode, action, mods );
 
 }
 
@@ -44,10 +51,12 @@ void ENGINE::Init( int WIND_WID, int WIND_HEI )
 
     Reshape( wind, WIND_WID, WIND_HEI );
     glfwSetWindowSizeCallback( wind, glfwReshape );
+    glfwSetKeyCallback( wind, glfwKeyFunc );
     this->WIND_WID = WIND_WID; 
     this->WIND_HEI = WIND_HEI;
 
     Ply = new Player();
+    keyStates = new bool[256];
 
     Poll();
 
@@ -59,6 +68,9 @@ void ENGINE::Poll()
     bool canceled = false;
 
     glfwPollEvents();
+
+    Ply->KeyOps();
+
     canceled = glfwWindowShouldClose( wind );
 
     if( canceled )
@@ -108,6 +120,13 @@ void ENGINE::Stop()
 
 }
 
+bool *ENGINE::GetKeyStates()
+{
+
+    return keyStates;
+
+}
+
 void ENGINE::Reshape( GLFWwindow *WIND, int width, int height )
 {
 
@@ -118,5 +137,23 @@ void ENGINE::Reshape( GLFWwindow *WIND, int width, int height )
     glOrtho( -width/2.0, width/2.0, -height/2.0, height/2.0, 1.0f, 2.0f );
 
     glMatrixMode( GL_MODELVIEW );
+
+}
+
+void ENGINE::KeyFunc( GLFWwindow *wind, int key, int scancode, int action, int mods )
+{
+
+    if( action == GLFW_PRESS )
+    {
+
+        keyStates[key] = true;
+
+    }
+    else if( action == GLFW_RELEASE )
+    {
+
+        keyStates[key] = false;
+
+    }
 
 }
