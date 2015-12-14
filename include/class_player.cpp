@@ -21,7 +21,7 @@ Player::Player()
 void Player::Move()
 {
 
-    float movSpeed = (GET_CONFIG().TILE_SIZE/32)*2;
+    float movSpeed = (GET_CONFIG().TILE_SIZE/32)*4;
 
     if( HitBox.pos.x < tarPos.x*GET_CONFIG().TILE_SIZE )
     {
