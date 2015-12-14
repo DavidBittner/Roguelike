@@ -3,7 +3,7 @@
 ENG_CONFIG& GET_CONFIG()
 {
 
-    static ENG_CONFIG *createNew = new ENG_CONFIG( 32, Coord( 50, 50 ) );
+    static ENG_CONFIG *createNew = new ENG_CONFIG( 64, Coord( 50, 50 ) );
     return *createNew;
 
 }

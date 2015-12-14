@@ -21,10 +21,27 @@ Player::Player()
 void Player::Move()
 {
 
+    float movSpeed = (GET_CONFIG().TILE_SIZE/32)*2;
+
     if( HitBox.pos.x < tarPos.x*GET_CONFIG().TILE_SIZE )
     {
 
-        HitBox.pos.x++;
+        HitBox.pos.x+=movSpeed;
+
+    }else if( HitBox.pos.x > tarPos.x*GET_CONFIG().TILE_SIZE )
+    {
+
+        HitBox.pos.x-=movSpeed;
+
+    }else if( HitBox.pos.y < tarPos.y*GET_CONFIG().TILE_SIZE )
+    {
+
+        HitBox.pos.y+=movSpeed;
+
+    }else if( HitBox.pos.y > tarPos.y*GET_CONFIG().TILE_SIZE )
+    {
+
+        HitBox.pos.y-=movSpeed;
 
     }
 
@@ -43,12 +60,21 @@ void Player::KeyOps()
         {
 
             tarPos.x++;
-            std::printf( "Here\n" );
 
         }else if( keys[GLFW_KEY_A] )
         {
 
+            tarPos.x--;
+
+        }else if( keys[GLFW_KEY_S] )
+        {
+
             tarPos.y--;
+
+        }else if( keys[GLFW_KEY_W] )
+        {
+
+            tarPos.y++;
 
         }
 
