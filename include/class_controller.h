@@ -1,6 +1,7 @@
 #pragma once
 
 #include "struct_rect.h"
+#include "class_sprite.h"
 
 #include <vector>
 
@@ -16,9 +17,8 @@ class Controller
         void Draw();
 
     protected:
-        Rect HitBox;
-        float ang;
-        
+        Sprite sprit;
+
     private:
         static int count;
         static std::vector<float> verts;
