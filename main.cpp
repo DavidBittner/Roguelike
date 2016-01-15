@@ -9,18 +9,13 @@
 int main()
 {
     
-    printf( "Revving the engine...\n" );
+    printf( "Starting program...\n" );
     GetEngine();
 
-    int tick = 0;
-
-    while( tick < 200 )
+    while( !GetEngine().GetTerm() )
     {
 
         GetEngine().Fire(); 
-        tick++;
-
-        std::this_thread::sleep_for( std::chrono::milliseconds( 200 ) );
 
     }
 

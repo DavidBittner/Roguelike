@@ -8,6 +8,8 @@ Process Engine::stateProc;
 Render  Engine::stateRend;
 Stop    Engine::stateStop;
 
+GLFWwindow *Engine::window;
+
 Engine &GetEngine()
 {
 
@@ -19,7 +21,16 @@ Engine &GetEngine()
 Engine::Engine()
 {
 
-    curState = GetState( "init" );
+    curState = &stateInit;
+
+    termed = false;
+
+}
+
+bool Engine::GetTerm()
+{
+
+    return termed;
 
 }
 
@@ -28,40 +39,11 @@ void Engine::Fire()
 
     curState = curState->exec();
 
-}
-
-State *Engine::GetState( std::string state )
-{
-
-    if( state == "init" )
+    if( curState == nullptr )
     {
 
-        return &stateInit;
-
-    }else if( state == "poll" )
-    {
-
-        return &statePoll;
-
-    }else if( state == "proc" )
-    {
-
-        return &stateProc;
-
-    }else if( state == "rend" )
-    {
-
-        return &stateRend;
-
-    }else if( state == "stop" )
-    {
-
-        return &stateStop;
+        termed = true;
 
     }
 
-    printf( "Invalid state... returning nullptr.\n" );
-    return nullptr;
-
 }
-

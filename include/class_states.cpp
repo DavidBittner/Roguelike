@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <iostream>
 
+#include <GLFW/glfw3.h>
+
 #include "class_states.h"
 #include "class_engine.h"
 
@@ -12,9 +14,15 @@ Init
 State *Init::exec()
 {
 
-    printf("Initalizing the polls...\n" );
+    printf("Initializing...\n" );
 
-    return GetEngine().GetState( "poll" ); 
+    int WIND_WIDTH = 800, WIND_HEIGHT = 600;
+
+    glfwInit();
+    Engine::window = glfwCreateWindow( WIND_WIDTH, WIND_HEIGHT, "Roguelike", nullptr, nullptr );
+    glfwMakeContextCurrent( Engine::window );
+
+    return &Engine::statePoll; 
 
 }
 
@@ -26,9 +34,22 @@ Poll
 State *Poll::exec()
 {
 
-    printf( "Polling the users...\n" );
+    glfwPollEvents();
 
-    return GetEngine().GetState( "proc" );
+    if( glfwWindowShouldClose( glfwGetCurrentContext() ) )
+    {
+
+        return &Engine::stateStop;
+
+    }else
+    {
+
+        return &Engine::stateProc;
+
+    }
+
+    //who knows lul
+    return nullptr;
 
 }
 
@@ -40,9 +61,7 @@ Process
 State *Process::exec()
 {
 
-    printf( "Processing the data (reticulating splines)...\n" );
-
-    return GetEngine().GetState( "rend" );
+    return &Engine::stateRend;
 
 }
 
@@ -54,9 +73,9 @@ Render
 State *Render::exec()
 {
 
-    printf( "Rendering stuff...\n" );
+    glfwSwapBuffers( glfwGetCurrentContext() );
 
-    return GetEngine().GetState( "poll" );
+    return &Engine::statePoll;
 
 }
 
@@ -68,7 +87,9 @@ Stop
 State *Stop::exec()
 {
 
-    printf( "I know who Iwant to take me home...\n" );
+    printf( "Terminating...\n" );
+
+    glfwTerminate();
 
     return nullptr;
 
