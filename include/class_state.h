@@ -1,7 +1,9 @@
+#pragma once
+
 class State
 {
 
     public:
-        virtual void exec() = 0;
+        virtual State *exec() = 0;
 
 };

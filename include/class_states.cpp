@@ -2,16 +2,19 @@
 #include <iostream>
 
 #include "class_states.h"
+#include "class_engine.h"
 
 /*
 Init
 --------------------------
 */
 
-void Init::exec()
+State *Init::exec()
 {
 
     printf("Initalizing the polls...\n" );
+
+    return GetEngine().GetState( "poll" ); 
 
 }
 
@@ -20,10 +23,12 @@ Poll
 --------------------------
 */
 
-void Poll::exec()
+State *Poll::exec()
 {
 
     printf( "Polling the users...\n" );
+
+    return GetEngine().GetState( "proc" );
 
 }
 
@@ -32,10 +37,12 @@ Process
 --------------------------
 */
 
-void Process::exec()
+State *Process::exec()
 {
 
     printf( "Processing the data (reticulating splines)...\n" );
+
+    return GetEngine().GetState( "rend" );
 
 }
 
@@ -44,10 +51,12 @@ Render
 --------------------------
 */
 
-void Render::exec()
+State *Render::exec()
 {
 
     printf( "Rendering stuff...\n" );
+
+    return GetEngine().GetState( "poll" );
 
 }
 
@@ -56,9 +65,11 @@ Stop
 --------------------------
 */
 
-void Stop::exec()
+State *Stop::exec()
 {
 
     printf( "I know who Iwant to take me home...\n" );
+
+    return nullptr;
 
 }

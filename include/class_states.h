@@ -1,3 +1,5 @@
+#pragma once
+
 #include "class_state.h"
 
 /*
@@ -7,7 +9,7 @@ Init
 class Init : public State
 {
 
-    void exec();
+    State *exec();
 
 };
 
@@ -20,7 +22,7 @@ Poll
 class Poll : public State
 {
 
-    void exec();
+    State *exec();
 
 };
 
@@ -32,7 +34,7 @@ Process
 class Process : public State
 {
 
-    void exec();
+    State *exec();
 
 };
 
@@ -45,7 +47,7 @@ Render
 class Render : public State
 {
 
-    void exec();
+    State *exec();
 
 };
 
@@ -57,6 +59,6 @@ Stop
 class Stop : public State
 {
 
-    void exec();
+    State *exec();
 
 };

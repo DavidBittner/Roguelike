@@ -1,3 +1,7 @@
+#pragma once
+
+#include <iostream>
+
 #include "class_state.h"
 #include "class_states.h"
 
@@ -6,6 +10,10 @@ class Engine
 
     public:
         Engine();
+
+        State *GetState( std::string state );
+
+        void Fire();
 
     private:
         State *curState;
@@ -17,3 +25,7 @@ class Engine
         static Stop    stateStop;
 
 };
+
+Engine &GetEngine();
+
+
