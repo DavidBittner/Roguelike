@@ -6,6 +6,10 @@
 #include "class_states.h"
 #include "class_engine.h"
 
+#include "class_keyboard.h"
+
+#include "funcs_helpers.h"
+
 /*
 Init
 --------------------------
@@ -18,9 +22,18 @@ State *Init::exec()
 
     int WIND_WIDTH = 800, WIND_HEIGHT = 600;
 
+    GetKeyboard();
+
     glfwInit();
     Engine::window = glfwCreateWindow( WIND_WIDTH, WIND_HEIGHT, "Roguelike", nullptr, nullptr );
     glfwMakeContextCurrent( Engine::window );
+
+    glfwSwapInterval( 1 );
+
+    glfwSetKeyCallback( Engine::window, KeyHelper );
+    glfwSetWindowSizeCallback( Engine::window, ReshapeHelper ); 
+
+    ReshapeHelper( Engine::window, WIND_WIDTH, WIND_HEIGHT );
 
     return &Engine::statePoll; 
 
@@ -35,6 +48,8 @@ State *Poll::exec()
 {
 
     glfwPollEvents();
+
+    GetKeyboard().ResetKeys();
 
     if( glfwWindowShouldClose( glfwGetCurrentContext() ) )
     {
