@@ -1,6 +1,6 @@
 C = g++
 CF = -std=c++11 -Wall
-DEPS = -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread -ldl
+DEPS = -lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread -ldl
 SOURCES = main.cpp include/*.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 OUT = out

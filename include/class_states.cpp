@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include "class_states.h"
@@ -34,6 +35,8 @@ State *Init::exec()
     glfwSetWindowSizeCallback( Engine::window, ReshapeHelper ); 
 
     ReshapeHelper( Engine::window, WIND_WIDTH, WIND_HEIGHT );
+
+    glewInit();
 
     return &Engine::statePoll; 
 
