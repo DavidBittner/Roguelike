@@ -4,6 +4,8 @@
 #include <chrono>
 #include <thread>
 
+#include <GL/glew.h>
+
 #include "include/class_engine.h"
 
 int main()

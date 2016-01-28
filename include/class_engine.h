@@ -6,6 +6,9 @@
 #include "class_state.h"
 #include "class_states.h"
 
+#include "class_controller.h"
+#include "class_player.h"
+
 class Engine
 {
 
@@ -32,6 +35,9 @@ class Engine
         static Stop    stateStop;
 
         static GLFWwindow *window;
+
+        Controller mainCont;
+        Player ply;
 
         bool termed;
 

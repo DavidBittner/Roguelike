@@ -1,37 +1,60 @@
 #include "class_controller.h"
 
-std::vector<GLuint> Controller::objectBuffers;
+#include <iostream>
+#include <cstdlib>
+
+std::vector<Controller*> Controller::childControls;
 
 Controller::Controller()
 {
 
-    objectBuffers.clear();
+    childControls.clear();
 
 }
 
 void Controller::Draw()
 {
 
-    for( GLuint i : objectBuffers )
-    {
+    glPushMatrix();
 
-        glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, i );
-        //glDrawElements( GL_TRIANGLES, 3, GL
+        glEnable( GL_TEXTURE_2D );
 
-    }
+        glEnableClientState( GL_VERTEX_ARRAY );
+        glEnableClientState( GL_TEXTURE_COORD_ARRAY );
+
+        for( unsigned i = 0; i < childControls.size(); i++ )
+        {
+
+            childControls.at(i)->Draw();
+
+        }
+
+        glDisable( GL_TEXTURE_2D );
+
+        glDisableClientState( GL_VERTEX_ARRAY );
+        glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+
+    glPopMatrix();
+
+}
+
+void Controller::Move()
+{
+
+    printf( "Fucking idiot, what the fuck are you fucking trying?\n" );
 
 }
 
 void Controller::Terminate()
 {
 
-    for( GLuint i : objectBuffers )
+    for( unsigned i = 0; i < childControls.size(); i++ )
     {
 
-        glDeleteBuffers( 1, &i );
+        childControls.at(i)->Terminate();
 
     }
 
-    objectBuffers.clear();
+    childControls.clear();
 
 }

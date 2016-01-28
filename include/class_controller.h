@@ -2,8 +2,9 @@
 
 #include <vector>
 
-#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include "class_sprite.h"
 
 class Controller
 {
@@ -11,12 +12,12 @@ class Controller
     public:
         Controller();
 
-        void Draw();
         void Terminate();
 
-        virtual void Move() = 0;
+        void Draw();
+        virtual void Move();
 
-    private:
-        static std::vector<GLuint> objectBuffers;
+    protected:
+        static std::vector<Controller*> childControls; 
 
 };

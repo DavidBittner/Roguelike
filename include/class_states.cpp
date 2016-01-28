@@ -1,8 +1,7 @@
+#include <GL/glew.h>
+
 #include <cstdlib>
 #include <iostream>
-
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 #include "class_states.h"
 #include "class_engine.h"

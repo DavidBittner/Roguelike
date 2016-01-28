@@ -10,6 +10,8 @@ void KeyHelper( GLFWwindow *window, int key, int scancode, int action, int mods 
 void ReshapeHelper( GLFWwindow *window, int width, int height )
 {
 
+    glfwMakeContextCurrent( window );
+
     glViewport( 0, 0, (GLsizei)width, (GLsizei)height );
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
@@ -17,3 +19,4 @@ void ReshapeHelper( GLFWwindow *window, int width, int height )
     glMatrixMode( GL_MODELVIEW );
 
 }
+
