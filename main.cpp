@@ -7,6 +7,7 @@
 #include <GL/glew.h>
 
 #include "include/class_engine.h"
+#include "include/class_player.h"
 
 int main()
 {

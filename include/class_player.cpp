@@ -7,8 +7,10 @@
 Player::Player()
 {
 
-    childControls.push_back( this );
-    printf( "Player created. New size is %d", int(childControls.size()) );
+    getChildren().push_back( this );
+    printf( "Player created. New size is %d. \n", int(getChildren().size()) );
+
+    selfSprite.LoadTex( "test.png", 512, 512 );
 
 }
 

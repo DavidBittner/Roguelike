@@ -13,5 +13,6 @@ class Sprite
 
     private:
         GLuint tex;
+        bool loaded;
 
 };

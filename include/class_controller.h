@@ -14,10 +14,11 @@ class Controller
 
         void Terminate();
 
-        void Draw();
+        void RunInit();
+
+        virtual void Draw();
         virtual void Move();
 
-    protected:
-        static std::vector<Controller*> childControls; 
+        std::vector<Controller*> &getChildren();
 
 };

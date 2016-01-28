@@ -3,12 +3,18 @@
 #include <iostream>
 #include <cstdlib>
 
-std::vector<Controller*> Controller::childControls;
-
 Controller::Controller()
 {
 
-    childControls.clear();
+    getChildren().clear();
+
+}
+
+std::vector<Controller*> &Controller::getChildren()
+{
+
+    static std::vector<Controller*> *childs = new std::vector<Controller*>;
+    return *childs;
 
 }
 
@@ -17,22 +23,22 @@ void Controller::Draw()
 
     glPushMatrix();
 
-        glEnable( GL_TEXTURE_2D );
+        //glEnable( GL_TEXTURE_2D );
 
         glEnableClientState( GL_VERTEX_ARRAY );
-        glEnableClientState( GL_TEXTURE_COORD_ARRAY );
+        //glEnableClientState( GL_TEXTURE_COORD_ARRAY );
 
-        for( unsigned i = 0; i < childControls.size(); i++ )
+        for( Controller *i : getChildren() )
         {
 
-            childControls.at(i)->Draw();
+            i->Draw();
 
         }
 
-        glDisable( GL_TEXTURE_2D );
+        //glDisable( GL_TEXTURE_2D );
 
         glDisableClientState( GL_VERTEX_ARRAY );
-        glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+        //glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 
     glPopMatrix();
 
@@ -48,13 +54,13 @@ void Controller::Move()
 void Controller::Terminate()
 {
 
-    for( unsigned i = 0; i < childControls.size(); i++ )
+    for( unsigned i = 0; i < getChildren().size(); i++ )
     {
 
-        childControls.at(i)->Terminate();
+        getChildren().at(i)->Terminate();
 
     }
 
-    childControls.clear();
+    getChildren().clear();
 
 }

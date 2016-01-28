@@ -37,6 +37,8 @@ State *Init::exec()
 
     glewInit();
 
+    Engine::stateProc.InitializePlayer();
+
     return &Engine::statePoll; 
 
 }
@@ -82,6 +84,13 @@ State *Process::exec()
 
 }
 
+void Process::InitializePlayer()
+{
+
+    ply = new Player();
+
+}
+
 /*
 Render
 --------------------------
@@ -89,6 +98,11 @@ Render
 
 State *Render::exec()
 {
+
+    glClear( GL_COLOR_BUFFER_BIT );
+    glLoadIdentity();
+
+    mainCont.Draw();
 
     glfwSwapBuffers( glfwGetCurrentContext() );
 

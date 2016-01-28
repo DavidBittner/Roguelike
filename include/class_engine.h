@@ -36,9 +36,6 @@ class Engine
 
         static GLFWwindow *window;
 
-        Controller mainCont;
-        Player ply;
-
         bool termed;
 
 };
