@@ -96,11 +96,25 @@ Render
 --------------------------
 */
 
+void Test()
+{
+
+    glBegin( GL_QUADS );
+        glVertex2f( 0.0f, 0.0f );
+        glVertex2f( 50.0f, 0.0f );
+        glVertex2f( 50.0f, 50.0f );
+        glVertex2f( 0.0f, 50.0f );
+    glEnd();
+
+}
+
 State *Render::exec()
 {
 
     glClear( GL_COLOR_BUFFER_BIT );
     glLoadIdentity();
+
+    glTranslatef( 0.0f, 0.0f, -1.0f );
 
     mainCont.Draw();
 

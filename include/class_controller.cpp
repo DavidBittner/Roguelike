@@ -23,10 +23,10 @@ void Controller::Draw()
 
     glPushMatrix();
 
-        //glEnable( GL_TEXTURE_2D );
+        glEnable( GL_TEXTURE_2D );
 
         glEnableClientState( GL_VERTEX_ARRAY );
-        //glEnableClientState( GL_TEXTURE_COORD_ARRAY );
+        glEnableClientState( GL_TEXTURE_COORD_ARRAY );
 
         for( Controller *i : getChildren() )
         {
@@ -35,10 +35,10 @@ void Controller::Draw()
 
         }
 
-        //glDisable( GL_TEXTURE_2D );
+        glDisable( GL_TEXTURE_2D );
 
         glDisableClientState( GL_VERTEX_ARRAY );
-        //glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+        glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 
     glPopMatrix();
 

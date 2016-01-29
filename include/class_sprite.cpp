@@ -43,7 +43,7 @@ void Sprite::Draw( float x, float y, float w, float h, float ang )
 {
 
     glTranslatef( x, y, -1.0f );
-    //glRotatef( ang, false, false, true );
+    glRotatef( ang, false, false, true );
 
     double verts[] = 
     {
@@ -58,24 +58,24 @@ void Sprite::Draw( float x, float y, float w, float h, float ang )
 
     double texVerts[] = 
     {
-        0.0f, 0.0f,
-        1.0f, 0.0f,
         1.0f, 1.0f,
-
-        0.0f, 0.0f,
         0.0f, 1.0f,
-        1.0f, 1.0f
+        0.0f, 0.0f,
+
+        1.0f, 1.0f,
+        1.0f, 0.0f,
+        0.0f, 0.0f
     };
 
-    if( loaded )    
+    if( loaded )
     {
     
         glBindTexture( GL_TEXTURE_2D, tex );
 
     }
 
-    glVertexPointer( 2, GL_FLOAT, 0, verts );
-    //glTexCoordPointer( 2, GL_FLOAT, 0, texVerts );
+    glVertexPointer( 2, GL_DOUBLE, 0, verts );
+    glTexCoordPointer( 2, GL_FLOAT, 0, texVerts );
 
     glDrawArrays( GL_TRIANGLES, 0, 6 );
 
