@@ -6,6 +6,9 @@
 
 #include <GL/glew.h>
 
+#include <thread>
+#include <chrono>
+
 #include "include/class_engine.h"
 #include "include/class_player.h"
 

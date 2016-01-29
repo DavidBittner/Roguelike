@@ -1,6 +1,7 @@
 #include "class_engine.h"
 #include <iostream>
 #include <cstdlib>
+#include <thread>
 
 Init    Engine::stateInit;
 Poll    Engine::statePoll;
@@ -45,5 +46,28 @@ void Engine::Fire()
         termed = true;
 
     }
+
+}
+
+void Engine::start()
+{
+
+    stime = glfwGetTime();
+
+}
+
+void Engine::end()
+{
+
+    etime = glfwGetTime();
+
+}
+
+void Engine::cap()
+{
+
+    int time = ( (etime-stime) - (1000.0f/FRAMES_PER_SECOND ) );
+
+    std::this_thread::sleep_for( std::chrono::milliseconds( time ) );
 
 }

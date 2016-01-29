@@ -25,6 +25,10 @@ class Engine
 
         bool GetTerm();
 
+        void start();
+        void end();
+        void cap();
+
     private:
         State *curState;
 
@@ -37,6 +41,9 @@ class Engine
         static GLFWwindow *window;
 
         bool termed;
+
+        const float FRAMES_PER_SECOND = 60.0f;
+        float stime = 0.0f, etime = 0.0f;
 
 };
 

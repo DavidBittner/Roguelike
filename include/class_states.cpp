@@ -51,6 +51,8 @@ Poll
 State *Poll::exec()
 {
 
+    GetEngine().start();
+
     glfwPollEvents();
 
     GetKeyboard().ResetKeys();
@@ -119,6 +121,10 @@ State *Render::exec()
     mainCont.Draw();
 
     glfwSwapBuffers( glfwGetCurrentContext() );
+
+    GetEngine().end();
+
+    GetEngine().cap();
 
     return &Engine::statePoll;
 
