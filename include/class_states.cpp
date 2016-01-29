@@ -91,6 +91,11 @@ Render
 State *Render::exec()
 {
 
+    glClear( GL_COLOR_BUFFER_BIT );
+    glLoadIdentity();
+
+    glTranslatef( 0.0f, 0.0f, -1.0f );
+
     glfwSwapBuffers( glfwGetCurrentContext() );
 
     return &Engine::statePoll;
