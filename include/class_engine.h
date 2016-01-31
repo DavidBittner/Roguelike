@@ -9,6 +9,8 @@
 #include "class_controller.h"
 #include "class_player.h"
 
+#define TILE_SIZE 1
+
 class Engine
 {
 
@@ -29,6 +31,8 @@ class Engine
         void end();
         void cap();
 
+        float GetAsp( int asp );
+
     private:
         State *curState;
 
@@ -44,6 +48,8 @@ class Engine
 
         const float FRAMES_PER_SECOND = 60.0f;
         float stime = 0.0f, etime = 0.0f;
+
+        const float tileSize = 128.0f;
 
 };
 

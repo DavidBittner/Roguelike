@@ -1,6 +1,8 @@
 #pragma once
 
 #include "class_controller.h"
+#include "struct_coord.h"
+#include "struct_rect.h"
 
 class Player : public Controller
 {
@@ -10,10 +12,16 @@ class Player : public Controller
 
         void Draw();
         void Move();
+        void KeyOps();
 
     private:
-       float x, y;
+        Coord pos;
+        Coord targPos;
 
-       Sprite selfSprite;
+        Rect hitBox;
+
+        Sprite selfSprite;
+
+        const float movSpeed = 20.0f;
 
 };

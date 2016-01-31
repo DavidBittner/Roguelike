@@ -47,7 +47,24 @@ void Controller::Draw()
 void Controller::Move()
 {
 
-    printf( "Fucking idiot, what the fuck are you fucking trying?\n" );
+    for( Controller *i : getChildren() )
+    {
+
+        i->Move();
+
+    }
+
+}
+
+void Controller::KeyOps()
+{
+
+    for( Controller *i : getChildren() )
+    {
+
+        i->KeyOps();
+
+    }
 
 }
 

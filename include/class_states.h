@@ -27,7 +27,11 @@ Poll
 class Poll : public State
 {
 
-    State *exec();
+    public:
+        State *exec();
+
+    private:
+        Controller mainCont;
 
 };
 
@@ -46,6 +50,7 @@ class Process : public State
 
     private:
         Player *ply;
+        Controller mainCont;
 
 };
 

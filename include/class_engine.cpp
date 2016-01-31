@@ -71,3 +71,22 @@ void Engine::cap()
     std::this_thread::sleep_for( std::chrono::milliseconds( time ) );
 
 }
+
+float Engine::GetAsp( int asp )
+{
+
+    switch( asp )
+    {
+
+        case TILE_SIZE:
+        {
+
+            return tileSize;
+
+        }
+
+    }
+
+    return 0.0f;
+
+}

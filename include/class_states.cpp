@@ -52,8 +52,9 @@ State *Poll::exec()
 {
 
     GetEngine().start();
-
     glfwPollEvents();
+
+    mainCont.KeyOps();
 
     GetKeyboard().ResetKeys();
 
@@ -81,6 +82,8 @@ Process
 
 State *Process::exec()
 {
+
+    mainCont.Move();
 
     return &Engine::stateRend;
 

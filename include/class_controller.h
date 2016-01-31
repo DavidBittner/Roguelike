@@ -18,6 +18,7 @@ class Controller
 
         virtual void Draw();
         virtual void Move();
+        virtual void KeyOps();
 
         std::vector<Controller*> &getChildren();
 
