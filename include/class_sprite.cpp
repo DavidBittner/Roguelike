@@ -42,7 +42,9 @@ void Sprite::LoadTex( const char *filename, int w, int h )
 void Sprite::Draw( float x, float y, float w, float h, float ang )
 {
 
-    glTranslatef( x, y, -1.0f );
+    glPushMatrix();
+
+    glTranslatef( x, y, 0.0f );
     glRotatef( ang, false, false, true );
 
     double verts[] = 
@@ -82,6 +84,8 @@ void Sprite::Draw( float x, float y, float w, float h, float ang )
     glDrawArrays( GL_TRIANGLES, 0, 6 );
 
     glBindTexture( GL_TEXTURE_2D, 0 );
+
+    glPopMatrix();
 
 }
 
