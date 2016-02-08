@@ -21,6 +21,7 @@ State *Init::exec()
     printf("Initializing...\n" );
 
     int WIND_WIDTH = 800, WIND_HEIGHT = 600;
+    int MAP_SIZE = 64;
 
     GetKeyboard();
 
@@ -38,6 +39,7 @@ State *Init::exec()
     glewInit();
 
     Engine::stateProc.InitializePlayer();
+    initMap = new Map( MAP_SIZE );
 
     return &Engine::statePoll; 
 
@@ -101,18 +103,6 @@ Render
 --------------------------
 */
 
-void Test()
-{
-
-    glBegin( GL_QUADS );
-        glVertex2f( 0.0f, 0.0f );
-        glVertex2f( 50.0f, 0.0f );
-        glVertex2f( 50.0f, 50.0f );
-        glVertex2f( 0.0f, 50.0f );
-    glEnd();
-
-}
-
 State *Render::exec()
 {
 
@@ -121,12 +111,12 @@ State *Render::exec()
 
     glTranslatef( 0.0f, 0.0f, -1.0f );
 
+    renderMap.Draw( Rect( Coord( 0, 0 ), Coord( 5, 5 ) ) );
     mainCont.Draw();
 
     glfwSwapBuffers( glfwGetCurrentContext() );
 
     GetEngine().end();
-
     GetEngine().cap();
 
     return &Engine::statePoll;

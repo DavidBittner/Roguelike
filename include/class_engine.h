@@ -49,7 +49,7 @@ class Engine
         const float FRAMES_PER_SECOND = 60.0f;
         float stime = 0.0f, etime = 0.0f;
 
-        const float tileSize = 128.0f;
+        const float tileSize = 64.0f;
 
 };
 

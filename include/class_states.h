@@ -4,6 +4,8 @@
 
 #include "class_controller.h"
 #include "class_player.h"
+#include "class_map.h"
+
 #include "class_state.h"
 
 /*
@@ -15,6 +17,9 @@ class Init : public State
 
     public:
         State *exec();
+
+    private:
+        Map *initMap;
 
 };
 
@@ -63,8 +68,12 @@ Render
 class Render : public State
 {
 
-    Controller mainCont;
-    State *exec();
+    public:
+        State *exec();
+        
+    private:
+        Controller mainCont;
+        Map renderMap;
 
 };
 
