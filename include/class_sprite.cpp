@@ -1,9 +1,44 @@
 #include "class_sprite.h"
 
 #include <GLFW/glfw3.h>
+#include <fstream>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
+
+std::string Sprite::genDataName( const char *filename )
+{
+
+    int dashPos = 0;
+    int extPos = 0;
+
+    std::string temp( filename );
+
+    for( unsigned i = 0; i < temp.size(); i++ )
+    {
+
+        if( temp[i] == '/' )
+        {
+
+            dashPos = i;
+
+        }
+        if( temp[i] == '.' )
+        {
+        
+            extPos = i;
+
+        }
+
+    }
+
+    temp.insert( dashPos+1, "." );
+
+    printf( "%s\n", temp.c_str() );
+
+    return temp;
+
+}
 
 void Sprite::LoadTex( const char *filename, int w, int h )
 {
@@ -11,6 +46,22 @@ void Sprite::LoadTex( const char *filename, int w, int h )
     loaded = true;
 
     int n = 4;
+
+    std::ifstream imgData( genDataName( filename ) );
+    
+    if( imgData.good() )
+    {
+
+        std::string temp;
+
+        std::getline( imgData, temp );
+        xam = std::atoi( temp.c_str() );
+        std::getline( imgData, temp );
+        yam = std::atoi( temp.c_str() );
+
+        printf( "%s\n", temp.c_str() );
+
+    }
 
     unsigned char *data = stbi_load( filename, &w, &h, &n, STBI_rgb_alpha );
 
