@@ -90,3 +90,21 @@ float Engine::GetAsp( int asp )
     return 0.0f;
 
 }
+
+template <class Theoret>
+void Engine::SetAsp( int asp, Theoret setter )
+{
+
+    switch( asp )
+    {
+
+        case TILE_SIZE:
+        {
+
+            tileSize = setter;
+
+        }
+
+    }
+
+}

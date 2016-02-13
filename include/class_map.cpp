@@ -54,7 +54,7 @@ Map::Map( int size )
     AddNewLevel();
 
     mapSprite = new Sprite();
-    mapSprite->LoadTex( "tem.png", 32, 32 );
+    mapSprite->LoadTex( "art/game/floor.png", 128, 128, 2, 2 );
 
 }
 
@@ -90,7 +90,9 @@ void Map::Draw( Rect area )
         for( int x = 0; x < xMax; x++ )
         {
             
-            mapSprite->Draw( x*tileSize, y*tileSize, tileSize, tileSize, 0.0f ); 
+            srand( x*y );
+            int orient = rand()%4;
+            mapSprite->Draw( 0, x*tileSize, y*tileSize, tileSize, tileSize, orient*90 ); 
 
         }
 

@@ -103,13 +103,22 @@ Render
 --------------------------
 */
 
+Coord *Render::perspective = new Coord( 0.0f, 0.0f );
+
+void Render::SetPerspective( Coord *newPersp )
+{
+
+    perspective = newPersp;
+
+}
+
 State *Render::exec()
 {
 
     glClear( GL_COLOR_BUFFER_BIT );
     glLoadIdentity();
 
-    glTranslatef( 0.0f, 0.0f, -1.0f );
+    glTranslatef( -perspective->x, -perspective->y, -1.0f );
 
     renderMap.Draw( Rect( Coord( 0, 0 ), Coord( 5, 5 ) ) );
     mainCont.Draw();

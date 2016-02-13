@@ -10,6 +10,7 @@
 #include "class_player.h"
 
 #define TILE_SIZE 1
+#define CAMERA 2
 
 class Engine
 {
@@ -33,6 +34,9 @@ class Engine
 
         float GetAsp( int asp );
 
+        template <class Theoret>
+        void  SetAsp( int asp, Theoret setter );
+
     private:
         State *curState;
 
@@ -49,7 +53,7 @@ class Engine
         const float FRAMES_PER_SECOND = 60.0f;
         float stime = 0.0f, etime = 0.0f;
 
-        const float tileSize = 64.0f;
+        const float tileSize = 128.0f;
 
 };
 

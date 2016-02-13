@@ -70,10 +70,13 @@ class Render : public State
 
     public:
         State *exec();
-        
+        void SetPerspective( Coord *newPersp );
+
     private:
         Controller mainCont;
         Map renderMap;
+
+        static Coord *perspective;
 
 };
 

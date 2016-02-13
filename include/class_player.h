@@ -14,6 +14,8 @@ class Player : public Controller
         void Move();
         void KeyOps();
 
+        Coord *GetPersp(){ return &pos; }
+
     private:
         Coord pos;
         Coord targPos;

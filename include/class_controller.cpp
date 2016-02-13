@@ -6,7 +6,6 @@
 Controller::Controller()
 {
 
-    getChildren().clear();
 
 }
 
