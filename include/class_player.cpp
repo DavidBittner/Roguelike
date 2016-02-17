@@ -48,22 +48,62 @@ void Player::KeyOps()
         if( GetKeyboard().GetKey( GLFW_KEY_A ) )
         {
 
-            targPos.x--;
+            if( targPos.x > 0 )
+            {
+
+                if( mapInstance.IsPassable( mapInstance.GetTile(targPos.x-1, targPos.y, level) ) )
+                {
+
+                    targPos.x--;
+
+                }
+
+            }
 
         }else if( GetKeyboard().GetKey( GLFW_KEY_D ) )
         {
 
-            targPos.x++;
+            if( targPos.x < GetEngine().GetAsp( MAP_SIZE )-1 )
+            {
+
+                if( mapInstance.IsPassable( mapInstance.GetTile(targPos.x+1, targPos.y, level) ) )
+                {
+
+                    targPos.x++;
+
+                }
+
+            }
 
         }else if( GetKeyboard().GetKey( GLFW_KEY_W ) )
         {
 
-            targPos.y++;
+            if( targPos.y < GetEngine().GetAsp( MAP_SIZE )-1 )
+            {
+
+                if( mapInstance.IsPassable( mapInstance.GetTile(targPos.x, targPos.y+1, level) ) )
+                {
+
+                    targPos.y++;
+
+                }
+
+            }
 
         }else if( GetKeyboard().GetKey( GLFW_KEY_S ) )
         {
 
-            targPos.y--;
+            if( targPos.y > 0 )
+            {
+
+                if( mapInstance.IsPassable( mapInstance.GetTile(targPos.x, targPos.y-1, level) ) )
+                {
+
+                    targPos.y--;
+
+                }
+
+            }
 
         }
 

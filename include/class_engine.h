@@ -11,6 +11,7 @@
 
 #define TILE_SIZE 1
 #define CAMERA 2
+#define MAP_SIZE 3
 
 class Engine
 {
@@ -34,8 +35,9 @@ class Engine
 
         float GetAsp( int asp );
 
-        template <class Theoret>
-        void  SetAsp( int asp, Theoret setter );
+        template <class T>
+        void  SetAsp( int asp, T setter );
+        void  SetAsp( int asp, int setter );
 
     private:
         State *curState;
@@ -54,6 +56,7 @@ class Engine
         float stime = 0.0f, etime = 0.0f;
 
         float tileSize = 128.0f;
+        int mapSize = 0;
 
 };
 

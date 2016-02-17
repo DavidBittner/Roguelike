@@ -84,6 +84,12 @@ float Engine::GetAsp( int asp )
             return tileSize;
 
         }
+        case MAP_SIZE:
+        {
+
+            return mapSize;
+
+        }
 
     }
 
@@ -91,8 +97,8 @@ float Engine::GetAsp( int asp )
 
 }
 
-template <class Theoret>
-void Engine::SetAsp( int asp, Theoret setter )
+template <class T>
+void Engine::SetAsp( int asp, T setter )
 {
 
     switch( asp )
@@ -102,6 +108,25 @@ void Engine::SetAsp( int asp, Theoret setter )
         {
 
             tileSize = setter;
+            break;
+
+        }
+
+    }
+
+}
+
+void Engine::SetAsp( int asp, int setter )
+{
+
+    switch( asp )
+    {
+
+        case MAP_SIZE:
+        {
+
+            mapSize = setter;
+            break;
 
         }
 

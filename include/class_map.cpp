@@ -17,13 +17,13 @@ void Map::ForceInit()
 void Map::AddNewLevel()
 {
 
-    map->push_back( new int*[MAP_SIZE] );
+    map->push_back( new int*[mapsize] );
 
-    for( int y = 0; y < MAP_SIZE; y++ )
+    for( int y = 0; y < mapsize; y++ )
     {
 
-        map->at( map->size()-1 )[y] = new int[MAP_SIZE];
-        for( int x = 0; x < MAP_SIZE; x++ )
+        map->at( map->size()-1 )[y] = new int[mapsize];
+        for( int x = 0; x < mapsize; x++ )
         {
 
            map->at( map->size()-1 )[y][x] = 0; 
@@ -46,10 +46,9 @@ Map::Map( int size )
 
     printf( "Map initialized with size %d.\n", size );
 
-    MAP_SIZE = size;
+    mapsize = size;
 
     ForceInit();
-    map->push_back( new int*[MAP_SIZE] );
 
     AddNewLevel();
 
@@ -72,7 +71,7 @@ void Map::SetTile( int x, int y, int level, int val )
 
 }
 
-void Map::Draw( Rect area )
+void Map::Draw( Rect area, int level )
 {
 
     int xMax = area.pos.x+area.bnd.x;
@@ -84,15 +83,15 @@ void Map::Draw( Rect area )
     glEnableClientState( GL_VERTEX_ARRAY );
     glEnableClientState( GL_TEXTURE_COORD_ARRAY );
 
-    for( int y = 0; y < yMax; y++ )
+    for( int y = area.pos.y; y < yMax; y++ )
     {
 
-        for( int x = 0; x < xMax; x++ )
+        for( int x = area.pos.x; x < xMax; x++ )
         {
             
             srand( x*y );
             int orient = rand()%4;
-            mapSprite->Draw( 0, x*tileSize, y*tileSize, tileSize, tileSize, orient*90 ); 
+            mapSprite->Draw( map->at(level)[x][y], x*tileSize, y*tileSize, tileSize, tileSize, orient*90 ); 
 
         }
 
@@ -101,5 +100,26 @@ void Map::Draw( Rect area )
     glDisableClientState( GL_TEXTURE_COORD_ARRAY );
     glDisableClientState( GL_VERTEX_ARRAY );
     glDisable( GL_TEXTURE_2D );
+
+}
+
+bool Map::IsPassable( int num )
+{
+
+    int passable[] = { 0, -1 };
+
+    for( int i = 0; passable[i] != -1; i++ )
+    {
+
+        if( passable[i] == num )
+        {
+
+            return true;
+
+        }
+
+    }
+
+    return false;
 
 }

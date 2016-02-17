@@ -21,14 +21,16 @@ class Map
         int  GetTile( int x, int y, int level );
         void SetTile( int x, int y, int level, int val );
 
-        void Draw( Rect area );
+        void Draw( Rect area, int level );
+
+        bool IsPassable( int num );
 
     private:
-        int MAP_SIZE = 50;
+        int mapsize = 0;
         static std::vector<int**> *map;
 
         static Sprite *mapSprite;
 
         void ForceInit();
-        
+
 };
