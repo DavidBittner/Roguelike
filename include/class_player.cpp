@@ -15,14 +15,14 @@ Player::Player()
 
     selfSprite.LoadTex( "art/game/ply.png", 128, 128, 1, 1 );
 
-    pos.x = 0.0f;
-    pos.y = 0.0f;
+    pos.x = 15*GetEngine().GetAsp( TILE_SIZE );
+    pos.y = 15*GetEngine().GetAsp( TILE_SIZE );
 
     hitBox.bnd.x = GetEngine().GetAsp( TILE_SIZE );
     hitBox.bnd.y = hitBox.bnd.x;
 
-    targPos.x = 0.0f;
-    targPos.y = 0.0f;
+    targPos.x = pos.x/GetEngine().GetAsp( TILE_SIZE );
+    targPos.y = pos.y/GetEngine().GetAsp( TILE_SIZE );
 
     Render tempInstance;
     tempInstance.SetPerspective( &pos );

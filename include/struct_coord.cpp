@@ -8,9 +8,9 @@ Coord::Coord()
 
 }
 
-bool Coord::operator== ( Coord b )
+Coord::Coord( int x, int y )
 {
 
-    return (( this->x == b.x ) && ( this->y == b.y ));
+    this->x = x; this->y = y;
 
 }

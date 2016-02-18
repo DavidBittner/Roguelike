@@ -4,6 +4,7 @@
 
 #include "class_sprite.h"
 #include "struct_rect.h"
+#include "class_mapgen.h"
 
 class Map
 {
@@ -30,6 +31,8 @@ class Map
         static std::vector<int**> *map;
 
         static Sprite *mapSprite;
+
+        MapGenerator *MapGenner;
 
         void ForceInit();
 

@@ -2,6 +2,7 @@
 
 #include <GLFW/glfw3.h>
 #include <fstream>
+#include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
@@ -54,13 +55,14 @@ Rect Sprite::GetTexCoords( int num )
     }
 
     float xwid = 1.0f/xam;
-    float ywid = 1.0f/xam;
+    float ywid = 1.0f/yam;
 
-    float xpos = num%xam;
+    float xpos = (num%xam)/xam;
     float ypos = int(floor(num/xam));
 
-    Rect returnRect( Coord( xpos, ypos ), Coord( xwid, ywid ) );
-    return returnRect;
+    printf( "%f\n", xwid );
+
+    return Rect( xpos, ypos, xwid, ywid );
 
 }
 
@@ -134,6 +136,8 @@ void Sprite::Draw( int num, float x, float y, float w, float h, float ang )
     };
 
     Rect tempRect = GetTexCoords( num );
+
+    printf( "%f\n", tempRect.bnd.x );
 
     double texVerts[] = 
     {

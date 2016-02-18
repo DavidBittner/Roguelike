@@ -2,6 +2,7 @@
 #include "class_engine.h"
 
 #include <iostream>
+#include <cmath>
 #include <vector>
 
 std::vector<int**> *Map::map;
@@ -44,13 +45,18 @@ Map::Map()
 Map::Map( int size )
 {
 
+    MapGenner = new MapGenerator( size );
+
     printf( "Map initialized with size %d.\n", size );
 
     mapsize = size;
 
     ForceInit();
 
-    AddNewLevel();
+    //AddNewLevel();
+
+    map->push_back( new int*[mapsize] );
+    map->at(0) = MapGenner->GenMap();
 
     mapSprite = new Sprite();
     mapSprite->LoadTex( "art/game/floor.png", 128, 128, 2, 2 );
@@ -91,7 +97,7 @@ void Map::Draw( Rect area, int level )
             
             srand( x*y );
             int orient = rand()%4;
-            mapSprite->Draw( map->at(level)[x][y], x*tileSize, y*tileSize, tileSize, tileSize, orient*90 ); 
+            mapSprite->Draw( 1, round(x*tileSize), round(y*tileSize), tileSize, tileSize, orient*90 ); 
 
         }
 
@@ -106,7 +112,7 @@ void Map::Draw( Rect area, int level )
 bool Map::IsPassable( int num )
 {
 
-    int passable[] = { 0, -1 };
+    int passable[] = { 1, -1 };
 
     for( int i = 0; passable[i] != -1; i++ )
     {
